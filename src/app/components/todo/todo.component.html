@@ -1,0 +1,24 @@
+<div class="form-group">
+  <label for="item">Item</label>
+  <input class="form-control"
+         #addMe>
+  <button class="btn btn-success"
+          (click)="addItem(addMe)">Add</button>
+</div>
+<div class="alert alert-info"
+     *ngIf="items.length === 0">
+  <h3>You don't have any items. Add Some!</h3>
+</div>
+<ul class="list-unstyled">
+  <li class="alert alert-info"
+      *ngFor="let item of items">
+    <span [ngClass]="{'completed': item.complete}">{{ item.description}}</span>
+    <button *ngIf="!item.complete"
+            (click)="markComplete(item)"
+            class="btn btn-sm btn-danger">X</button>
+  </li>
+
+</ul>
+<button *ngIf="hasCompletedItems"
+        class="btn btn-danger"
+        (click)="removeCompleted()">Remove Completed</button>
